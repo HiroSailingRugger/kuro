@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>KURO</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.stage{
+  position:relative;
+  width:220px;
+}
+
+.stage img{
+  width:220px;
+  display:block;
+}
+
+.open{
+  animation:openEye 20s infinite;
+}
+
+.black{
+  position:absolute;
+  top:0;
+  left:0;
+  animation:blackEye 20s infinite;
+}
+
+@keyframes openEye{
+  0%,24%{ opacity:0; }
+  25%,59%{ opacity:1; }
+  60%{ opacity:0; }
+  61%,79%{ opacity:1; }
+  80%{ opacity:0; }
+  81%{ opacity:1; }
+  82%{ opacity:0; }
+  83%,100%{ opacity:1; }
+}
+
+@keyframes blackEye{
+  0%,24%{ opacity:1; }
+  25%,59%{ opacity:0; }
+  60%{ opacity:1; }
+  61%,79%{ opacity:0; }
+  80%{ opacity:1; }
+  81%{ opacity:0; }
+  82%{ opacity:1; }
+  83%,100%{ opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stage">
+  <img class="open" src="o.jpg.jpg">
+  <img class="black" src="c.jpg.jpg">
+</div>
+
+</body>
+</html>
