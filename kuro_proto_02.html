@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>KURO proto 02</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-family:sans-serif;
+}
+
+.stage{
+  position:relative;
+  width:65vw;
+  max-width:460px;
+  transform:translateY(-40px);
+}
+
+.stage img{
+  width:100%;
+  display:block;
+}
+
+.open{
+  animation:openEye 20s infinite;
+}
+
+.black{
+  position:absolute;
+  top:0;
+  left:0;
+  animation:blackEye 20s infinite;
+}
+
+.message{
+  position:absolute;
+  bottom:-75px;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-size:22px;
+  letter-spacing:0.12em;
+  color:white;
+  z-index:10;
+}
+
+.nameBox{
+  margin-top:14px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid white;
+  padding:0 8px;
+}
+
+input{
+  background:none;
+  color:white;
+  border:none;
+  padding:8px 6px;
+  font-size:18px;
+  text-align:center;
+  outline:none;
+  width:220px;
+}
+
+.enterBtn{
+  background:none;
+  border:none;
+  color:white;
+  font-size:26px;
+  cursor:pointer;
+  opacity:0.75;
+  padding:0 4px;
+}
+
+.enterBtn:hover{
+  opacity:1;
+}
+
+@keyframes openEye{
+  0%,18%{
+    opacity:1;
+    clip-path:inset(50% 0 50% 0);
+  }
+
+  28%{
+    opacity:1;
+    clip-path:inset(35% 0 35% 0);
+  }
+
+  38%,59%{
+    opacity:1;
+    clip-path:inset(0% 0 0% 0);
+  }
+
+  60%{ opacity:0; }
+  61%,79%{ opacity:1; }
+  80%{ opacity:0; }
+  81%{ opacity:1; }
+  82%{ opacity:0; }
+  83%,100%{ opacity:1; }
+}
+
+@keyframes blackEye{
+  0%,28%{ opacity:1; }
+  38%,59%{ opacity:0; }
+  60%{ opacity:1; }
+  61%,79%{ opacity:0; }
+  80%{ opacity:1; }
+  81%{ opacity:0; }
+  82%{ opacity:1; }
+  83%,100%{ opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stage">
+  <img class="open" src="o.jpg.jpg">
+  <img class="black" src="c.jpg.jpg">
+
+  <div class="message" id="message"></div>
+</div>
+
+<script>
+const message = document.getElementById("message");
+const savedName = localStorage.getItem("kuro_name");
+
+setTimeout(() => {
+  if(savedName){
+    message.innerHTML = savedName + "……";
+  }else{
+    message.innerHTML = `
+      ナンテ ヨンダラ イイ？<br>
+      <span class="nameBox">
+        <input id="nameInput" placeholder="名前">
+        <button class="enterBtn" onclick="saveName()">↩</button>
+      </span>
+    `;
+  }
+}, 5000);
+
+function saveName(){
+  const nameInput = document.getElementById("nameInput");
+  const name = nameInput.value.trim();
+
+  if(name === "") return;
+
+  localStorage.setItem("kuro_name", name);
+ message.innerHTML = "…………";
+
+setTimeout(() => {
+  message.innerHTML = name + "……";
+}, 1800);
+
+}
+</script>
+
+</body>
+</html>
